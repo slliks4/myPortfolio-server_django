@@ -11,4 +11,4 @@ class Categories(models.Model):
         verbose_name_plural = ("Categories")
 
     def __str__(self):
-        return f"{self.name}-{self.date_created}"
+        return f"{self.name}"

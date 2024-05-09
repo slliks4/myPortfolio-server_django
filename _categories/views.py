@@ -12,7 +12,7 @@ def getCategories(request):
         serializer = CategorySerializer(categories, many = True)
 
         return Response(
-            {'categories': serializer.data},
+            serializer.data,
             status=200
         )
     except Exception as error:

@@ -8,7 +8,7 @@ class Projects(models.Model):
     image = models.ImageField(upload_to='uploads/_projects/images', blank=True, null=True)
     title = models.CharField(max_length=100);
     text = models.TextField()
-    related_blogs = models.ManyToManyField("_blogs.Blogs")
+    related_blogs = models.ManyToManyField("_blogs.Blogs", blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     
     class Meta:
@@ -17,5 +17,5 @@ class Projects(models.Model):
         verbose_name_plural = 'Projects'
 
     def __str__(self):
-        return f"{self.title}-{self.date_created}"
+        return f"{self.title}"
     
