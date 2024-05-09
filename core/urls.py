@@ -21,5 +21,5 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("super_admin/", admin.site.urls),
-    path("endpoints/", include('api.urls'))
+    path("api/", include('api.urls'))
 ]+static(settings.UPLOADS_URL, document_root=settings.UPLOADS_ROOT)

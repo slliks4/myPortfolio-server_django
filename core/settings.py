@@ -43,9 +43,13 @@ INSTALLED_APPS = [
     "rest_framework",
     'corsheaders',
     "api",
-    '_projects',
-    '_categories',
     '_blogs',
+    '_categories',
+    "_comments",
+    "_feedBack",
+    "_links",
+    "_profile",
+    '_projects',
 ]
 
 MIDDLEWARE = [

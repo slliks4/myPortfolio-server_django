@@ -1,10 +1,12 @@
 from django.db import models
+
 # Create your models here.
 class Blogs(models.Model):
     categories = models.ManyToManyField("_categories.Categories")
     image = models.ImageField(upload_to='uploads/_blogs/images', blank=True, null=True)
     title = models.CharField(max_length=100);
     text = models.TextField()
+    links = models.ManyToManyField("_links.Links", blank=True)
     related_projects = models.ManyToManyField("_projects.Projects", blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     
