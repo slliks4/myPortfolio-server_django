@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <title>Backup page</title>
+</head>
+<body>
+    <h1>Backup page</h1>
+    <br>
+    {% for message in messages %}
+        <p>
+            {{message}}
+        </p>
+    {% endfor %}
+    <br>
+    <div>
+        <form action="{% url "backup-profile" %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Backup profile</button>
+        </form> ||
+        <form action="">
+            {% csrf_token %}
+            <button type="submit">restore profile backup</button>
+        </form>
+    </div>
+    <br>
+    <div>
+        <form action="{% url "backup-blogs" %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Backup Blogs</button>
+        </form> ||
+        <form action="">
+            {% csrf_token %}
+            <button type="submit">restore blogs backup</button>
+        </form>
+    </div>
+    <br>
+    <div>
+        <form action="{% url "backup-projects" %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Backup Projects</button>
+        </form> ||
+        <form action="">
+            {% csrf_token %}
+            <button type="submit">restore projects backup</button>
+        </form>
+    </div>
+    <br>
+    <div>
+        <form action="{% url "backup-feedback" %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Backup Feedback</button>
+        </form> ||
+        <form action="">
+            {% csrf_token %}
+            <button type="submit">restore Feedback backup</button>
+        </form>
+    </div>
+    <br>
+    <form action="{% url "logout" %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>

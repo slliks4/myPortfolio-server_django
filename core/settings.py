@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     "rest_framework",
     'corsheaders',
     "api",
+    "backup",
+    "pages",
     '_blogs',
     '_categories',
     "_comments",

@@ -18,8 +18,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from backup import views
+from.views import Logout
 
 urlpatterns = [
     path("super_admin/", admin.site.urls),
-    path("api/", include('api.urls'))
+    path("api/", include('api.urls')),
+    path("", include('pages.urls')),
+    path("logout/", Logout, name="logout"),
+    path("backup-profile/", views.BackupProfile, name="backup-profile"),
+    path("backup-blogs/", views.BackupBlogs, name="backup-blogs"),
+    path("backup-projects/", views.BackupProjects, name="backup-projects"),
+    path("backup-feedback/", views.BackupFeedBack, name="backup-feedback"),
 ]+static(settings.UPLOADS_URL, document_root=settings.UPLOADS_ROOT)
