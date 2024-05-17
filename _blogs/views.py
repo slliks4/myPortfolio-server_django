@@ -8,14 +8,17 @@ from django.db.models import Q
 @api_view(['GET'])
 def getBlogs(request):
     try:
-        query = request.GET.get('query','')
+        query = request.GET.get('query')
+        category = request.GET.get('category')
 
-        blogs = Blogs.objects.filter(
-            Q(title__icontains = query) | 
-            Q(categories__name__icontains = query) |
-            Q(text__icontains = query)
-        ).distinct()
+        filters = Q()
 
+        if category:
+            filters &= Q(categories__name=category)
+        if query:
+            filters &= Q(title__icontains=query) | Q(text__icontains=query)
+
+        blogs = Blogs.objects.filter(filters).distinct()
         serializer = BlogSerializer(blogs, many = True)
 
         return Response(
@@ -30,11 +33,9 @@ def getBlogs(request):
 def getBlogDetail(request, id):
     try:
         blog_detail = Blogs.objects.get(id=id)
-        serializer = BlogSerializer(blog_detail, many = False)
-
-        return Response(
-            {'message':'blog_detail','data':serializer.data}, 
-            status=200
-        )
+        serializer = BlogSerializer(blog_detail, many=False)
+        return Response({'message': 'blog_detail', 'data': serializer.data}, status=200)
+    except Blogs.DoesNotExist:
+        return Response({'message': 'Blog not found'}, status=404)
     except Exception as error:
-        return Response({'message':str(error)}, status=400)
+        return Response({'message': str(error)}, status=500)

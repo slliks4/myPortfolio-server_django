@@ -14,12 +14,12 @@ urlpatterns = [
     path("categories/", getCategories, name="categories"),
 
     # Blogs
-    path("blogs/", getBlogs, name="blogs"),
-    path("blog_detail/<int:id>/", getBlogDetail, name="blog_detail"),
+    path("blog/", getBlogs, name="blogs"),
+    path("blog/<int:id>/", getBlogDetail, name="blog_detail"),
 
     # Projects
-    path("projects/", getProjects, name="projects"),
-    path("project_detail/<int:id>/", getProjectDetail, name="project_detail"),
+    path("project/", getProjects, name="projects"),
+    path("project/<int:id>/", getProjectDetail, name="project_detail"),
 
     # Profile
     path("profile/<str:user_name>/", getProfile, name="profile")
