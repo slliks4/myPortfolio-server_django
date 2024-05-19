@@ -7,6 +7,7 @@ class Projects(models.Model):
     title = models.CharField(max_length=100);
     text = models.TextField()
     links = models.ManyToManyField("_links.Links", blank=True)
+    is_lab = models.BooleanField(("isLab"), default=False)
     related_blogs = models.ManyToManyField("_blogs.Blogs", blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     
