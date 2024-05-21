@@ -15,6 +15,7 @@ class Projects(models.Model):
         db_table = 'Projects'
         verbose_name = 'Projects'
         verbose_name_plural = 'Projects'
+        ordering = ('-id',)
 
     def __str__(self):
         return f"{self.title}"

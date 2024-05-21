@@ -14,6 +14,7 @@ class Blogs(models.Model):
         db_table = 'Blogs'
         verbose_name = 'Blogs'
         verbose_name_plural = 'Blogs'
+        ordering = ('-id',)
 
     def __str__(self):
         return f"{self.title}"
