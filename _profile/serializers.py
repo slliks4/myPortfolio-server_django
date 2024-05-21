@@ -50,15 +50,24 @@ class LinkSerializer(serializers.ModelSerializer):
         model = Links
         fields = '__all__'
 
+
+class SkillsSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Skills
+        fields = '__all__'
+
+
 class ProfileSerializer(serializers.ModelSerializer):
-    email = EmailSerializer(many=True, read_only = True)
-    tel = TelSerializer(many=True, read_only = True)
+    mission = MissionSerializer(many=False, read_only = True)
+    vision = VisionSerializer(many=False, read_only=True)
     education = EducationSerializer(many=True, read_only = True)
     experience = ExperienceSerializer(many=True, read_only = True)
     services = ServicesSerializer(many=True, read_only = True)
+    skills = SkillsSerializer(many=True, read_only= True)
+    email = EmailSerializer(many=True, read_only = True)
+    tel = TelSerializer(many=True, read_only = True)
     links = LinkSerializer(many=True, read_only =True)
-    mission = MissionSerializer(many=False, read_only = True)
-    vision = VisionSerializer(many=False, read_only=True)
 
     class Meta:
         model = Profile

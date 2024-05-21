@@ -16,7 +16,8 @@ def getProfile(request, user_name):
                 'tel',
                 'experience',
                 'education',
-                'services'
+                'services',
+                'skills',
             ),
             user_name = user_name
         )

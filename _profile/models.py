@@ -62,7 +62,7 @@ class Profile(models.Model):
 
     def __str__(self) -> str:
         return f"{self.user_name} | {self.first_name},{self.last_name}"
-    
+
 class Files(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='files')
     file = models.FileField(("Files"), upload_to='uploads/_profile/files', max_length=100,blank=True,null=True)
@@ -151,3 +151,15 @@ class Experience(models.Model):
 
     def __str__(self) -> str:
         return f"{self.title} | {self.company_name}"
+    
+class Skills(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='skills')
+    name = models.CharField(("name"), max_length=150)
+    level = models.CharField(("level"), max_length=150)
+    class Meta:
+        db_table = 'Skills'
+        verbose_name = 'Skills'
+        verbose_name_plural = 'Skills'
+
+    def __str__(self) -> str:
+        return f"{self.name} | {self.level}"

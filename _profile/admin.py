@@ -1,6 +1,9 @@
 from django.contrib import admin
 from .models import *
 
+class SkillsInline(admin.StackedInline):
+    model = Skills
+    extra = 0
 class FilesInline(admin.StackedInline):
     model = Files
     extra = 0
@@ -27,7 +30,7 @@ class ExperienceInline(admin.StackedInline):
 
 class ProfileModelAdmin(admin.ModelAdmin):
     model = Profile
-    inlines = [FilesInline, EmailInline, TelInline, EducationInline, ExperienceInline, ServicesInline]
+    inlines = [FilesInline, EmailInline, TelInline, EducationInline, ExperienceInline, ServicesInline, SkillsInline]
 
 # Register your models here.
 admin.site.register(Profile, ProfileModelAdmin)
