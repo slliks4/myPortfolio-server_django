@@ -22,7 +22,7 @@ from backup import views
 from.views import Logout
 
 urlpatterns = [
-    path("super_admin/", admin.site.urls),
+    path("admin@slliks4-portfolio/", admin.site.urls),
     path("api/", include('api.urls')),
     path("", include('pages.urls')),
     path("logout/", Logout, name="logout"),
