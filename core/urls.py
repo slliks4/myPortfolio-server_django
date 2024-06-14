@@ -30,4 +30,8 @@ urlpatterns = [
     path("backup-blogs/", views.BackupBlogs, name="backup-blogs"),
     path("backup-projects/", views.BackupProjects, name="backup-projects"),
     path("backup-feedback/", views.BackupFeedBack, name="backup-feedback"),
-]+static(settings.UPLOADS_URL, document_root=settings.UPLOADS_ROOT)
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.UPLOADS_URL, document_root=settings.UPLOADS_ROOT)

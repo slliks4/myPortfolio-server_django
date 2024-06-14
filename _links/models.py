@@ -4,7 +4,7 @@ from django.db import models
 
 class Links(models.Model):
     name = models.CharField(("Name"), max_length=150)
-    title = models.CharField(("Name"), max_length=150, blank=True, null= True)
+    title = models.CharField(("Title"), max_length=150, blank=True, null= True)
     url = models.CharField(("Url"), max_length=500)
     date_created = models.DateTimeField(auto_now_add=True)
 

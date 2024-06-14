@@ -166,9 +166,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 if DEBUG:
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
+# Whitenoise settings for static files in production
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-UPLOADS_URL='uploads/'
+UPLOADS_URL='/uploads/'
 UPLOADS_ROOT=os.path.join(BASE_DIR, 'uploads')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
