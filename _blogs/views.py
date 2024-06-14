@@ -8,6 +8,8 @@ from django.db.models import Q
 @api_view(['GET'])
 def getBlogs(request):
     try:
+        limit = int(request.GET.get('limit', 6))
+        skip = int(request.GET.get('skip', 0))
         query = request.GET.get('query')
         category = request.GET.get('category')
 
@@ -18,7 +20,9 @@ def getBlogs(request):
         if query:
             filters &= Q(title__icontains=query) | Q(text__icontains=query)
 
-        blogs = Blogs.objects.filter(filters).distinct()
+        data = Blogs.objects.filter(filters).distinct()
+        blogs = data[skip:skip+limit]
+
         serializer = BlogSerializer(blogs, many = True)
 
         return Response(
@@ -30,7 +34,7 @@ def getBlogs(request):
     
     
 @api_view(['GET'])
-def getBlogDetail(request, id):
+def getBlog(request, id):
     try:
         blog_detail = Blogs.objects.get(id=id)
         serializer = BlogSerializer(blog_detail, many=False)

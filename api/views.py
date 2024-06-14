@@ -7,13 +7,14 @@ from rest_framework.response import Response
 @api_view(['GET'])
 def EndPoints(request):
     endpoints = {
-        'categories -GET':'/categories',
-        'blogs -GET':'/blogs',
-        'blog_detail -GET':'/blog_detail/<str:pk>',
-        'projects -GET':'/projects',
-        'project_detail -GET':'/project_detail/<str:pk>',
-        'profile -GET': '/profile/user_name',
-        'comments -POST': '/comments/',
-        'feedback -POST' : '/feedback/'
+        'categories -GET':'/getCategories',
+        'blogs -GET params(limit:6, skip:0, category, query)':'/getBlogs',
+        'blog_detail -GET':'/getBlog/<str:pk>',
+        'projects -GET params(limit:6, skip:0, category, query)':'/projects',
+        'project_detail -GET':'/getProject/<str:pk>',
+        'profile -GET': '/getProfile/user_name',
+        'comments -POST': '/getComments/<int:blog_id>',
+        'comments -POST': '/postComment/',
+        'feedback -POST' : '/postFeedback/'
     }
     return Response(endpoints)

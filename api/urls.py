@@ -2,8 +2,8 @@
 from django.urls import path
 from .import views
 from _categories.views import getCategories
-from _blogs.views import getBlogs, getBlogDetail
-from _projects.views import getProjects, getProjectDetail
+from _blogs.views import getBlogs, getBlog
+from _projects.views import getProjects, getProject
 from _profile.views import getProfile
 from _feedBack.views import postFeedBack
 from _comments.views import getComments, postComments
@@ -13,22 +13,22 @@ urlpatterns = [
     path('', views.EndPoints, name='endpoints'),
     
     # Categories
-    path("categories/", getCategories, name="categories"),
+    path("getCategories/", getCategories, name="categories"),
 
     # Blogs
-    path("blog/", getBlogs, name="blogs"),
-    path("blog/<int:id>/", getBlogDetail, name="blog_detail"),
+    path("getBlogs/", getBlogs, name="blogs"),
+    path("getBlog/<int:id>/", getBlog, name="blog_detail"),
 
     # Blog Comments
     path("getComments/<int:blog_id>", getComments, name="getComments"),
     path("postComments/<int:blog_id>", postComments, name="postComments"),
 
     # Projects
-    path("project/", getProjects, name="projects"),
-    path("project/<int:id>/", getProjectDetail, name="project_detail"),
+    path("getProjects/", getProjects, name="projects"),
+    path("getproject/<int:id>/", getProject, name="project_detail"),
 
     # Profile
-    path("profile/<str:user_name>/", getProfile, name="profile"),
+    path("getProfile/<str:user_name>/", getProfile, name="profile"),
 
     # FeedBack
     path("postFeedBack", postFeedBack, name="postFeedBack")

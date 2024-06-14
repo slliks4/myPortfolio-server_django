@@ -9,6 +9,8 @@ from rest_framework import status
 @api_view(['GET'])
 def getProjects(request):
     try:
+        limit = int(request.GET.get('limit', 6))
+        skip = int(request.GET.get('skip', 0))
         is_lab = request.GET.get('is_lab')
         category = request.GET.get('category')
 
@@ -19,7 +21,8 @@ def getProjects(request):
         if is_lab is not None:
             filters &= Q(is_lab=is_lab.lower() == 'true')
 
-        projects = Projects.objects.filter(filters).distinct()
+        data = Projects.objects.filter(filters).distinct()
+        projects = data[skip:skip+limit]
 
         serializer = ProjectSerializer(projects, many = True)
 
@@ -35,7 +38,7 @@ def getProjects(request):
     
     
 @api_view(['GET'])
-def getProjectDetail(request, id):
+def getProject(request, id):
     try:
         project_detail = Projects.objects.get(id=id)
         serializer = ProjectSerializer(project_detail, many = False)
