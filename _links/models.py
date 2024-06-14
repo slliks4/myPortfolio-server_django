@@ -4,6 +4,7 @@ from django.db import models
 
 class Links(models.Model):
     name = models.CharField(("Name"), max_length=150)
+    title = models.CharField(("Name"), max_length=150, blank=True, null= True)
     url = models.CharField(("Url"), max_length=500)
     date_created = models.DateTimeField(auto_now_add=True)
 
@@ -13,4 +14,4 @@ class Links(models.Model):
         verbose_name_plural = 'Links'
 
     def __str__(self) -> str:
-        return f"{self.name}"
+        return f"{self.name, self.title}"
