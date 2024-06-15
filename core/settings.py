@@ -160,7 +160,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
-STATICFILES_DIRS=[(os.path.join(BASE_DIR,'static'))]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 if DEBUG:
@@ -169,7 +168,7 @@ if DEBUG:
 # Whitenoise settings for static files in production
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL='/uploads/'
+MEDIA_URL='uploads/'
 MEDIA_ROOT=os.path.join(BASE_DIR, 'uploads')
 
 # Default primary key field type
