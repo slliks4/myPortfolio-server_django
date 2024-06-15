@@ -16,7 +16,7 @@ def postFeedBack(request) -> Response:
         email = request.data.get('email')
 
         # configure email data
-        subject = "New Feedback from portfolio Received"
+        subject = "Feedback from slliks4 portfolio"
         admin_message = f"""Hey Skills :), you got a new feedback in your portfolio from {full_name}. Log in to your database to view the message. https://slliks4server.vercel.app/admin@slliks4-portfolio/_feedBack/feedback/"""
         user_message = f"""
 Hi {full_name},

@@ -32,7 +32,7 @@ class Profile(models.Model):
     last_name = models.CharField(("Last name"), max_length=150)
     pic = models.ImageField(
         ("Profile picture"), 
-        upload_to='uploads/_profile/images', 
+        upload_to='_profile/images', 
         height_field=None, 
         width_field=None, 
         max_length=None,
@@ -41,7 +41,7 @@ class Profile(models.Model):
     )
     about_pic = models.ImageField(
         ("About page picture"), 
-        upload_to='uploads/_profile/images', 
+        upload_to='_profile/images', 
         height_field=None, 
         width_field=None, 
         max_length=None,
@@ -65,7 +65,7 @@ class Profile(models.Model):
 
 class Files(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='files')
-    file = models.FileField(("Files"), upload_to='uploads/_profile/files', max_length=100,blank=True,null=True)
+    file = models.FileField(("Files"), upload_to='_profile/files', max_length=100,blank=True,null=True)
     
     class Meta:
         db_table = 'Files'
@@ -103,7 +103,7 @@ class Services(models.Model):
     text = models.TextField(("Text"))
     icon = models.ImageField(
         ("Icon"), 
-        upload_to='uploads/_profile/icons', 
+        upload_to='_profile/icons', 
         height_field=None, 
         width_field=None, 
         max_length=None,

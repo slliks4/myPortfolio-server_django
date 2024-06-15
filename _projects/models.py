@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Projects(models.Model):
     categories = models.ManyToManyField("_categories.Categories")
-    image = models.ImageField(upload_to='uploads/_projects/images', blank=True, null=True)
+    image = models.ImageField(upload_to='_projects/images', blank=True, null=True)
     title = models.CharField(max_length=100);
     text = models.TextField()
     links = models.ManyToManyField("_links.Links", blank=True)

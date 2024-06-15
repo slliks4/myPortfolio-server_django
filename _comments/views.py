@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from .serializers import CommentSerializers, Comments
 from _blogs.models import Blogs
+from utils.send_email import send_email
 
 # Create your views here.
 @api_view(['GET'])
@@ -25,8 +26,17 @@ def postComments(request, blog_id) -> Response:
     serializer = CommentSerializers(data=request.data)
 
     if serializer.is_valid():
+        message = request.data.get('message')
+        blog_title = blog.title
+        subject = "New comment from slliks4 portfolio"
+        admin_message = f"""
+Blog Title : {blog_title}:
+
+Comment: {message}
+"""
         # save request data
         serializer.save(blog=blog)
+        send_email(subject=subject, message=admin_message, to_email='skillsnwokolo372@gmail.com')
 
         return Response(
             {'message': 'success', 'data': serializer.data},
