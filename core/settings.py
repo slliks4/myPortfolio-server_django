@@ -180,13 +180,13 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://10.0.0.126:3000",
-    "https://slliks4.vercel.app"
+    "https://slliks4.vercel.app",
     "https://slliks4-client-react.vercel.app"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://10.0.0.126:3000",
-    "https://slliks4.vercel.app"
+    "https://slliks4.vercel.app",
     "https://slliks4-client-react.vercel.app"
 ]
