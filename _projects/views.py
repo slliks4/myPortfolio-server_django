@@ -22,14 +22,29 @@ def getProjects(request):
             filters &= Q(is_lab=is_lab.lower() == 'true')
 
         data = Projects.objects.filter(filters).distinct()
-        projects = data[skip:skip+limit]
+        total = len(data)
 
-        serializer = ProjectSerializer(projects, many = True)
+        # Ensure limit is at least 1
+        limit = max(limit, 1)
 
-        return Response(
-            {'message': 'projects', 'data': serializer.data}, 
-            status=status.HTTP_200_OK
-        )
+        # Prevent pagination limit exceeding the total number of projects
+        if skip >= total:
+            return Response({'message': 'Pagination limit exceeded'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Adjust the limit to avoid IndexError
+        end_index = min(skip + limit, total)
+
+        projects = data[skip:end_index]
+
+        serializer = ProjectSerializer(projects, many=True)
+
+        # TODO: Implement Pagination and include in response
+        response = {
+            'message': 'success',
+            'data': serializer.data,
+            'total': total,
+        }
+        return Response(response, status=status.HTTP_200_OK)
     except Exception as error:
         error_message = str(error)
         if len(error_message) > 30:
