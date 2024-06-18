@@ -10,7 +10,7 @@ from rest_framework import status
 def getBlogs(request):
     try:
         limit = int(request.GET.get('limit', 6))
-        skip = int(request.GET.get('skip', 0))
+        page = int(request.GET.get('page', 1))
         query = request.GET.get('query')
         category = request.GET.get('category')
 
@@ -22,27 +22,35 @@ def getBlogs(request):
             filters &= Q(title__icontains=query) | Q(text__icontains=query)
 
         data = Blogs.objects.filter(filters).distinct()
-        total = len(data)
+        total = data.count()
 
         # Ensure limit is at least 1
         limit = max(limit, 1)
 
+        # Calculate the starting and ending indices for slicing the queryset
+        start = (page - 1) * limit
+        end = start + limit
+
         # Prevent pagination limit exceeding the total number of projects
-        if skip >= total:
+        if start >= total:
             return Response({'message': 'Pagination limit exceeded'}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Adjust the limit to avoid IndexError
-        end_index = min(skip + limit, total)
-
-        blogs = data[skip:end_index]
+        # Fetch the projects for the current page
+        blogs = data[start:end]
 
         serializer = BlogSerializer(blogs, many = True)
+
+        # Calculate total number of pages
+        total_pages = (total + limit - 1) // limit  # Ceiling division for total pages
         
         # TODO: Implement Pagination and include in response
         response = {
             'message': 'success',
             'data': serializer.data,
-            'total': total
+            'currentPage': page,
+            'nextPage': page + 1 if page * limit < total else None,
+            'totalPages': total_pages,
+            'totalData': total,
         }
         return Response(response, status=status.HTTP_200_OK)
     except Exception as error:
