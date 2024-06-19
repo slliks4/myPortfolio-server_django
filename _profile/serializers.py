@@ -57,6 +57,11 @@ class SkillsSerializer(serializers.ModelSerializer):
         model = Skills
         fields = '__all__'
 
+class FilesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Files
+        fields = '__all__'
+
 
 class ProfileSerializer(serializers.ModelSerializer):
     mission = MissionSerializer(many=False, read_only = True)
@@ -68,6 +73,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     email = EmailSerializer(many=True, read_only = True)
     tel = TelSerializer(many=True, read_only = True)
     links = LinkSerializer(many=True, read_only =True)
+    files = FilesSerializer(many=True, read_only = True)
 
     class Meta:
         model = Profile

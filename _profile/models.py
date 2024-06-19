@@ -65,12 +65,17 @@ class Profile(models.Model):
 
 class Files(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='files')
-    file = models.FileField(("Files"), upload_to='_profile/files', max_length=100,blank=True,null=True)
+    image = models.ImageField(("image"), upload_to='_profile/Image', max_length=100,blank=True,null=True)
+    pdf = models.FileField(("File"), upload_to='_profile/files', max_length=100,blank=True,null=True)
+    title = models.CharField(("Title"), max_length=15, blank=True,null=True)
     
     class Meta:
         db_table = 'Files'
         verbose_name = 'Files'
         verbose_name_plural = 'Files'
+
+    def __str__(self) -> str:
+        return self.title
 
 
 class Email(models.Model):
