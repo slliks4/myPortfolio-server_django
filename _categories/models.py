@@ -11,5 +11,10 @@ class Categories(models.Model):
         verbose_name_plural = ("Categories")
         ordering = ('-id',)
 
+    def save(self, *args, **kwargs):
+        # Convert fields to lowercase
+        self.name = self.name.lower()
+        super(Categories, self).save(*args, **kwargs)
+
     def __str__(self):
         return f"{self.name}"
