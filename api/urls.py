@@ -20,8 +20,8 @@ urlpatterns = [
     path("getBlog/<int:id>/", getBlog, name="blog_detail"),
 
     # Blog Comments
-    path("getComments/<int:blog_id>/", getComments, name="getComments"),
-    path("postComment/<int:blog_id>/", postComment, name="postComment"),
+    path("getComments/<int:blog_id>", getComments, name="getComments"),
+    path("postComment/<int:blog_id>", postComment, name="postComment"),
 
     # Projects
     path("getProjects/", getProjects, name="projects"),
@@ -31,5 +31,5 @@ urlpatterns = [
     path("getProfile/<str:user_name>/", getProfile, name="profile"),
 
     # FeedBack
-    path("postFeedBack/", postFeedBack, name="postFeedBack")
+    path("postFeedBack", postFeedBack, name="postFeedBack")
 ]
