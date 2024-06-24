@@ -20,7 +20,7 @@ def getComments(request, blog_id) -> Response:
     )
 
 @api_view(['POST'])
-def postComments(request, blog_id) -> Response:
+def postComment(request, blog_id) -> Response:
     blog = get_object_or_404(Blogs, id=blog_id)
 
     serializer = CommentSerializers(data=request.data)

@@ -6,7 +6,7 @@ from _blogs.views import getBlogs, getBlog
 from _projects.views import getProjects, getProject
 from _profile.views import getProfile
 from _feedBack.views import postFeedBack
-from _comments.views import getComments, postComments
+from _comments.views import getComments, postComment
 
 urlpatterns = [
     # End points
@@ -21,7 +21,7 @@ urlpatterns = [
 
     # Blog Comments
     path("getComments/<int:blog_id>", getComments, name="getComments"),
-    path("postComments/<int:blog_id>", postComments, name="postComments"),
+    path("postComment/<int:blog_id>", postComment, name="postComment"),
 
     # Projects
     path("getProjects/", getProjects, name="projects"),
