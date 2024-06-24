@@ -61,9 +61,9 @@ def getProjects(request):
     
     
 @api_view(['GET'])
-def getProject(request, id):
+def getProject(request, project_id):
     try:
-        project_detail = Projects.objects.get(id=id)
+        project_detail = Projects.objects.get(id=project_id)
         serializer = ProjectSerializer(project_detail, many = False)
 
         return Response(
