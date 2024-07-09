@@ -6,8 +6,10 @@ from django.db.models import Q
 from rest_framework import status
 
 # Create your views here.
+
+
 @api_view(['GET'])
-def getProjects(request):
+def get_projects(request):
     try:
         limit = int(request.GET.get('limit', 6))
         page = int(request.GET.get('page', 1))
@@ -58,17 +60,16 @@ def getProjects(request):
             error_message = error_message[:30]
         return Response({'message': error_message}, status=status.HTTP_400_BAD_REQUEST)
 
-    
-    
+
 @api_view(['GET'])
-def getProject(request, project_id):
+def get_project(request, project_id):
     try:
         project_detail = Projects.objects.get(id=project_id)
-        serializer = ProjectSerializer(project_detail, many = False)
+        serializer = ProjectSerializer(project_detail, many=False)
 
         return Response(
-            {'message':'project_detail','data':serializer.data}, 
+            {'message': 'project_detail', 'data': serializer.data},
             status=200
         )
     except Exception as error:
-        return Response({'message':str(error)}, status=400)
+        return Response({'message': str(error)}, status=400)

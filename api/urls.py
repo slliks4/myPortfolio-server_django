@@ -3,7 +3,7 @@ from django.urls import path
 from .import views
 from _categories.views import getCategories
 from _blogs.views import getBlogs, getBlog
-from _projects.views import getProjects, getProject
+from _projects.views import get_projects, get_project
 from _profile.views import getProfile
 from _feedBack.views import postFeedBack
 from _comments.views import getComments, postComment
@@ -24,8 +24,8 @@ urlpatterns = [
     path("postComment/<int:blog_id>", postComment, name="postComment"),
 
     # Projects
-    path("getProjects/", getProjects, name="projects"),
-    path("getProject/<int:project_id>/", getProject, name="project_detail"),
+    path("getProjects/", get_projects, name="projects"),
+    path("getProject/<int:project_id>/", get_project, name="project_detail"),
 
     # Profile
     path("getProfile/<str:user_name>/", getProfile, name="profile"),
