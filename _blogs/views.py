@@ -6,8 +6,10 @@ from django.db.models import Q
 from rest_framework import status
 
 # Create your views here.
+
+
 @api_view(['GET'])
-def getBlogs(request):
+def get_blogs(request):
     try:
         limit = int(request.GET.get('limit', 6))
         page = int(request.GET.get('page', 1))
@@ -38,12 +40,11 @@ def getBlogs(request):
         # Fetch the projects for the current page
         blogs = data[start:end]
 
-        serializer = BlogSerializer(blogs, many = True)
+        serializer = BlogSerializer(blogs, many=True)
 
         # Calculate total number of pages
-        total_pages = (total + limit - 1) // limit  # Ceiling division for total pages
-        
-        # TODO: Implement Pagination and include in response
+        total_pages = int((total + limit - 1) // limit)  # Ceiling division for total pages
+
         response = {
             'message': 'success',
             'data': serializer.data,
@@ -61,9 +62,9 @@ def getBlogs(request):
     
     
 @api_view(['GET'])
-def getBlog(request, id):
+def get_blog(request, blog_id):
     try:
-        blog_detail = Blogs.objects.get(id=id)
+        blog_detail = Blogs.objects.get(id=blog_id)
         serializer = BlogSerializer(blog_detail, many=False)
         return Response({'message': 'blog_detail', 'data': serializer.data}, status=200)
     except Blogs.DoesNotExist:
